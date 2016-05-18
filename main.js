@@ -29,7 +29,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.on('ready', function() {
   createWindow();
-  installMenu();
+  // installMenu();
 });
 
 // Quit when all windows are closed.
@@ -53,7 +53,7 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.
 
 function installMenu() {
-  var Menu = require('menu');
+  var Menu = new app.Menu();
   if(process.platform == 'darwin') {
     menu = Menu.buildFromTemplate([
       {
