@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="bower_components/vue/dist/vue.min.js"></script>
+    <script src="bower_components/kuromoji/dist/browser/kuromoji.js"></script>
+
+    <style id="css">
+            body {
+            font-weight: 300;
+            font-family: 'avenir next', 'Helvetica neue', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', sans-serif;
+            font-size: 12px;
+            }
+
+            .wp100 {
+              width: 100%
+            }
+
+            #export_csv {
+              margin-top: 30px;
+              margin-bottom: 30px;
+            }
+    </style>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Shirakaba</title>
+  </head>
+
+  <body>
+  <div class="container">
+  <p class="title">Shirakaba ( 日本語形態素解析ソフト )</p>
+    <div id="demo" class="row">
+        <div class="col-lg-12">
+            <div v-show="isLoading" data-alert="" class="alert-box radius">
+                <div v-text="message"></div>
+            </div>
+
+            <form v-show="!isLoading">
+                <label>解析対象<br />
+                    <textarea v-model="inputText" rows="6" cols="80"></textarea>
+                    <input type="text" name="dummy" style="display:none;">
+                </label>
+
+                <a href="#" class="btn btn-default hidden" id="export_csv">Export as CSV</a>
+
+                <table v-show="tokens.length" width="100%" class="table">
+                    <thead>
+                    <tr>
+                        <th>表層形</th>
+                        <th>品詞</th>
+                        <th>品詞細分類1</th>
+                        <th>品詞細分類2</th>
+                        <th>品詞細分類3</th>
+                        <th>活用型</th>
+                        <th>活用形</th>
+                        <th>基本形</th>
+                        <th>読み</th>
+                        <th>発音</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-repeat="token: tokens">
+                        <td>{{token.surface_form}}</td>
+                        <td>{{token.pos}}</td>
+                        <td>{{token.pos_detail_1}}</td>
+                        <td>{{token.pos_detail_2}}</td>
+                        <td>{{token.pos_detail_3}}</td>
+                        <td>{{token.conjugated_type}}</td>
+                        <td>{{token.conjugated_form}}</td>
+                        <td>{{token.basic_form}}</td>
+                        <td>{{token.reading}}</td>
+                        <td>{{token.pronunciation}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+  </div>
+
+    <script src="tokenizer.js"></script>
+    <script src="menu.js"></script>
+
+  </body>
+</html>
