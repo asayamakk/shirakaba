@@ -65,14 +65,14 @@ button.onclick = function() {
 function build_csv() {
   var csv_string = "";
 
-  var header = ['表層形','品詞','品詞細分類1','品詞細分類2','品詞細分類3','活用型','活用形','基本形','読み','発音'].join("\t")
+  var header = ['表層形','品詞','品詞細分類1','品詞細分類2','品詞細分類3','活用型','活用形','基本形','読み','発音']
 
   csv_string += header;
   csv_string += '\r\n';
 
   for(var i = 0; i < vm.tokens.length; i++) {
     var token = vm.tokens[i];
-    csv_string += ([token.surface_form, token.pos, token.pos_detail_1, token.pos_detail_2, token.pos_detail_3, token.conjugated_type, token.conjugated_form, token.basic_form, token.reading, token.pronunciation]).join("\t");
+    csv_string += ([token.surface_form, token.pos, token.pos_detail_1, token.pos_detail_2, token.pos_detail_3, token.conjugated_type, token.conjugated_form, token.basic_form, token.reading, token.pronunciation])
     csv_string += '\r\n';
   }
 

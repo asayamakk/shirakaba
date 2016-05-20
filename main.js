@@ -54,8 +54,10 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.
 
 function installMenu() {
+  let template;
+
   if(process.platform == 'darwin') {
-    var template = [
+    template = [
       {
         label: 'shirakaba',
         submenu: [
@@ -121,7 +123,7 @@ function installMenu() {
       }
     ];
   } else {
-    var template = [
+    template = [
       {
         label: '&View',
         submenu: [
