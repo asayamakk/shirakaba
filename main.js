@@ -3,6 +3,7 @@ const electron = require('electron');
 const {app} = electron;
 // Module to create native browser window.
 const {BrowserWindow} = electron;
+const Menu = electron.Menu;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -29,7 +30,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.on('ready', function() {
   createWindow();
-  // installMenu();
+  installMenu();
 });
 
 // Quit when all windows are closed.
@@ -53,9 +54,8 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.
 
 function installMenu() {
-  var Menu = new app.Menu();
   if(process.platform == 'darwin') {
-    menu = Menu.buildFromTemplate([
+    var template = [
       {
         label: 'shirakaba',
         submenu: [
@@ -72,12 +72,12 @@ function installMenu() {
           {
             label: 'Reload',
             accelerator: 'Command+R',
-            click: function() { mainWindow.restart(); }
+            click: function() { win.reload(); }
           },
           {
             label: 'Toggle Full Screen',
             accelerator: 'Ctrl+Command+F',
-            click: function() { mainWindow.setFullScreen(!mainWindow.isFullScreen()); }
+            click: function() { win.setFullScreen(!win.isFullScreen()); }
           },
         ]
       },
@@ -119,27 +119,28 @@ function installMenu() {
           },
         ]
       }
-    ]);
-    Menu.setApplicationMenu(menu);
+    ];
   } else {
-    menu = Menu.buildFromTemplate([
+    var template = [
       {
         label: '&View',
         submenu: [
           {
             label: '&Reload',
             accelerator: 'Ctrl+R',
-            click: function() { mainWindow.restart(); }
+            click: function() { win.reload(); }
           },
           {
             label: 'Toggle &Full Screen',
             accelerator: 'F11',
-            click: function() { mainWindow.setFullScreen(!mainWindow.isFullScreen()); }
+            click: function() { win.setFullScreen(!win.isFullScreen()); }
           },
         ]
       }
-    ]);
-    mainWindow.setMenu(menu);
+    ];
+    win.setMenu(menu);
   }
 
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu);
 }
