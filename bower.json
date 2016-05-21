@@ -1,11 +1,7 @@
 {
-  "name": "kuromogi",
+  "name": "shirakaba",
   "description": "",
   "main": "main.js",
-  "authors": [
-    "浅山広大 <kodai419419@gmail.com>"
-  ],
-  "license": "ISC",
   "homepage": "",
   "ignore": [
     "**/.*",
@@ -16,7 +12,6 @@
   ],
   "dependencies": {
     "kuromoji": "^0.0.5",
-    "foundation": "~5.4.7",
     "vue": "~0.10.6"
   }
 }
