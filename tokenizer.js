@@ -1,4 +1,4 @@
-var DIC_URL = "bower_components/kuromoji/dist/dict/";
+var DIC_URL = "node_modules/kuromoji/dist/dict/";
 
 var tokenizer = null;
 
