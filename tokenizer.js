@@ -2,6 +2,7 @@ var DIC_URL = "node_modules/kuromoji/dist/dict/";
 
 var tokenizer = null;
 
+const BUTTON_CLASSNAME = 'btn btn-default'
 
 var vm = new Vue({
     el: "#demo",
@@ -36,6 +37,8 @@ var vm = new Vue({
 vm.$watch("inputText", function (value) {
     vm.svgStyle = "hidden";
     vm.tokenize();
+    var button_classname = (vm.tokens.length == 0) ? BUTTON_CLASSNAME + ' disabled' : BUTTON_CLASSNAME
+    document.getElementById('export_csv').className = button_classname
 });
 
 
@@ -50,7 +53,7 @@ kuromoji.builder({ dicPath: DIC_URL }).build(function (error, _tokenizer) {
 
     vm.inputText = "すもももももももものうち";
     vm.isLoading = false;
-    document.getElementById('export_csv').className = "btn btn-default"
+    document.getElementById('export_csv').className = BUTTON_CLASSNAME
 });
 
 var button = document.getElementById('export_csv');

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,43 +9,46 @@
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
     <style id="css">
-            body {
+        body {
             font-weight: 300;
             font-family: 'avenir next', 'Helvetica neue', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', sans-serif;
             font-size: 12px;
-            }
+        }
 
-            .wp100 {
-              width: 100%
-            }
+        .wp100 {
+          width: 100%
+        }
 
-            #export_csv {
-              margin-top: 30px;
-              margin-bottom: 30px;
-            }
-    </style>
-    <title>Shirakaba</title>
-  </head>
+        #export_csv {
+          margin-top: 30px;
+          margin-bottom: 30px;
+        }
+  </style>
+  <title>Shirakaba</title>
+</head>
 
-  <body>
+<body>
   <div class="container">
-  <p class="title">Shirakaba ( 日本語形態素解析ソフト )</p>
-    <div id="demo" class="row">
+      <p class="title">Shirakaba ( 日本語形態素解析ソフト )</p>
+      <div id="demo" class="row">
         <div class="col-lg-12">
             <div v-show="isLoading" data-alert="" class="alert-box radius">
                 <div v-text="message"></div>
             </div>
 
-            <form v-show="!isLoading">
-                <label>解析対象<br />
-                    <textarea v-model="inputText" rows="6" cols="80"></textarea>
-                    <input type="text" name="dummy" style="display:none;">
-                </label>
+            <div v-show="!isLoading">
+                <form>
+                    <label>解析対象<br />
+                        <textarea v-model="inputText" rows="6" cols="80"></textarea>
+                        <input type="text" name="dummy" style="display:none;">
+                    </label>
+                </form>
+            </div>
 
-                <a href="#" class="btn btn-default hidden" id="export_csv">Export as CSV</a>
+            <div class="col-lg-12"><a href="#" class="btn btn-default hidden" id="export_csv">Export as CSV</a></div>
 
-                <table v-show="tokens.length" width="100%" class="table">
-                    <thead>
+            <table v-show="tokens.length" width="100%" class="table">
+                <thead>
                     <tr>
                         <th>表層形</th>
                         <th>品詞</th>
@@ -58,8 +61,8 @@
                         <th>読み</th>
                         <th>発音</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     <tr v-repeat="token: tokens">
                         <td>{{token.surface_form}}</td>
                         <td>{{token.pos}}</td>
@@ -72,13 +75,12 @@
                         <td>{{token.reading}}</td>
                         <td>{{token.pronunciation}}</td>
                     </tr>
-                    </tbody>
-                </table>
-            </form>
+                </tbody>
+            </table>
         </div>
     </div>
-  </div>
+</div>
 
-    <script src="tokenizer.js"></script>
-  </body>
+<script src="tokenizer.js"></script>
+</body>
 </html>
